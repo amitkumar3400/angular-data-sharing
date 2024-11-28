@@ -1,0 +1,17 @@
+<div class="row mt-3">
+  <div>
+    <!-- Here we are passing this counter value as input to counter-ouput component
+    we have counter value in parent and we are passing that to child component
+    which is app-counter-output -->
+    <app-counter-output [counterChild]="counterParent"></app-counter-output>
+  </div>
+  <div class="row align-items-center">
+    <!-- here we are going to bind our parents function  to accept emiited event from counter-buttons component
+    by counter-buttons -->
+    <app-counter-buttons
+      (incrementFromButton)="onIncrementParent()"
+      (decrementFromButton)="onDecrementParent()"
+      (resetFromButton)="onResetParent()"
+    ></app-counter-buttons>
+  </div>
+</div>
