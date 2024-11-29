@@ -16,4 +16,8 @@ export class CustomCounterComponent implements OnInit {
     this.store.dispatch(customCounterSet({ value: this.customCounter }));
   }
   ngOnInit(): void {}
+  onReset() {
+    this.customCounter = 1;
+    this.store.dispatch(customCounterSet({ value: this.customCounter }));
+  }
 }

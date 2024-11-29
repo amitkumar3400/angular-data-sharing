@@ -12,15 +12,13 @@ const _counterReducer: ActionReducer<ICounter> = createReducer(
   on(increment, (state) => {
     return {
       ...state,
-      counter:
-        state.counter + (state.customCounter !== 0 ? state.customCounter : 1),
+      counter: state.counter + state.customCounter,
     };
   }),
   on(decrement, (state) => {
     return {
       ...state,
-      counter:
-        state.counter - (state.customCounter !== 0 ? state.customCounter : 1),
+      counter: state.counter - state.customCounter,
     };
   }),
   on(reset, (state) => {
