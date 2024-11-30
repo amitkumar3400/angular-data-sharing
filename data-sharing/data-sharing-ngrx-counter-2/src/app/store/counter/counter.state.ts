@@ -7,5 +7,5 @@ export interface ICounter {
 export const initialStateCounter: ICounter = {
   counter: 0,
   loading: false,
-  customCounter: 1,
+  customCounter: 10,
 };

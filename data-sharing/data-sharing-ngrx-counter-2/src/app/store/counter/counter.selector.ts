@@ -8,7 +8,7 @@ export const getCounter = createSelector(getCounterState, (state) => {
 });
 
 export const getCustomCounter = createSelector(getCounterState, (state) => {
-  return state.counter;
+  return state.customCounter;
 });
 
 export const getLoading = createSelector(getCounterState, (state) => {

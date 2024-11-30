@@ -2,6 +2,9 @@
   <h4>Enter value for custom counter in below input</h4>
 </div>
 <div class="form-group">
+  <!-- if you use ngmodel and dont have this custom counter state in counter state
+  then you would have to create new actions to accept this value and add
+  /subtract from countrer value -->
   <!-- <input
     type="number"
     [(ngModel)]="customCounter"
@@ -9,18 +12,21 @@
     min="1"
     class="form-control-sm"
   /> -->
+  <!-- // use below code when you want your custom counter value to be managed by ngrx and should be
+  used by your reducer function instead of passing it on every action dispatch
+  for increment , decrement -->
   <input
     type="number"
-    #input
-    (change)="onInputChange(input)"
+    #customCounterinput
+    (change)="onInputChange(customCounterinput)"
     min="1"
     class="form-control-sm"
-    placeholder="0"
+    placeholder="1"
   />
   <input
     type="button"
     class="btn btn-primary mx-1"
     value="Reset"
-    (click)="onReset()"
+    (click)="onReset(customCounterinput)"
   />
 </div>

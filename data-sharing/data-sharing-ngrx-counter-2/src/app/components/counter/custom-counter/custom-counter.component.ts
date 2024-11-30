@@ -1,5 +1,15 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { customCounterSet } from 'src/app/store/counter/counter.actions';
 import { getCustomCounter } from 'src/app/store/counter/counter.selector';
 import { ICounter } from 'src/app/store/counter/counter.state';
@@ -9,20 +19,21 @@ import { ICounter } from 'src/app/store/counter/counter.state';
   templateUrl: './custom-counter.component.html',
   styleUrls: ['./custom-counter.component.css'],
 })
-export class CustomCounterComponent implements OnInit {
-  customCounter: number = 1;
+export class CustomCounterComponent implements AfterViewInit {
   constructor(private readonly store: Store<{ counter: ICounter }>) {}
-
+  @ViewChild('customCounterinput', { static: false })
+  myInput!: ElementRef;
   onInputChange(value: HTMLInputElement) {
     this.store.dispatch(customCounterSet({ value: +value.value }));
   }
-  ngOnInit(): void {
-    this.store.select(getCustomCounter).subscribe((data) => {
-      console.log('inside on init value is ', data);
-      this.customCounter = data;
-    });
+  onReset(customCounterinput: HTMLInputElement) {
+    customCounterinput.value = '1';
+    this.store.dispatch(customCounterSet({ value: 1 }));
   }
-  onReset() {
-    this.store.dispatch(customCounterSet({ value: 0 }));
+
+  ngAfterViewInit(): void {
+    this.store.select(getCustomCounter).subscribe((data) => {
+      this.myInput.nativeElement.value = data;
+    });
   }
 }
