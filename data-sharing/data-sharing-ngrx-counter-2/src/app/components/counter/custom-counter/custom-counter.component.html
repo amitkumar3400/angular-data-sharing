@@ -2,12 +2,20 @@
   <h4>Enter value for custom counter in below input</h4>
 </div>
 <div class="form-group">
-  <input
+  <!-- <input
     type="number"
     [(ngModel)]="customCounter"
     (change)="onInputChange()"
     min="1"
     class="form-control-sm"
+  /> -->
+  <input
+    type="number"
+    #input
+    (change)="onInputChange(input)"
+    min="1"
+    class="form-control-sm"
+    placeholder="0"
   />
   <input
     type="button"

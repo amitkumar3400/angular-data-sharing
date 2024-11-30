@@ -28,6 +28,7 @@ const _counterReducer: ActionReducer<ICounter> = createReducer(
     };
   }),
   on(customCounterSet, (state, action) => {
+    console.log('in reducer ', action.value);
     return {
       ...state,
       customCounter: action.value,
